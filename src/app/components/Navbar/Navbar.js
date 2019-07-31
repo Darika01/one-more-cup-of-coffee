@@ -4,12 +4,21 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Menu from '@material-ui/core/Menu';
+import MenuList from '@material-ui/core/MenuList';
+import Popper from '@material-ui/core/Popper';
+import Paper from '@material-ui/core/Paper';
+import Grow from '@material-ui/core/Grow';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import InputIcon from '@material-ui/icons/Input';
+import ArrowDropDownIcon  from '@material-ui/icons/ArrowDropDown';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import {useStyles} from './styles';
@@ -19,16 +28,15 @@ export default function Navbar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
-    const [isCategories, setIsCategories] = React.useState(false)
-
-    // const [isMenuOpen, setIsMenuOpen] = React.useState(anchorEl !== null ? true : false);
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    console.log(isCategories)
+
+    const [isCategories, setIsCategories] = React.useState(false);
+    const categories = ['Wszystkie', 'Nauka', 'Sztuka', 'Filozofia', 'Psychologia'];
+
+
     function handleProfileMenuOpen(event) {
         setAnchorEl(event.currentTarget);
-        // setIsMenuOpen(true)
     }
     function showCategories() {
         setIsCategories(!isCategories)
@@ -53,25 +61,38 @@ export default function Navbar() {
         }
     }, [isMobileMenuOpen])
 
-    const menuId = 'primary-search-account-menu';
     const renderMenu = (
-        <Menu
+        <Popper 
+            open={isMenuOpen} 
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            id={menuId}
+            onMouseLeave={handleMenuClose}
+            transition 
+            disablePortal
             keepMounted
-            transformOrigin={{  vertical: 'bottom', horizontal: 'center' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-            // onMouseLeave={handleMenuClose}
-            getContentAnchorEl={null}
-            className={classes.catMenu}
         >
-            <div onMouseLeave={handleMenuClose}>
-                <MenuItem onClick={handleMenuClose} >Profile</MenuItem>
-                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            </div>
-        </Menu>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+            }}
+          >
+            <Paper className={classes.catMenu}>
+                <MenuList>
+                    {
+                        categories.map(el => {
+                            return (
+                                <MenuItem onClick={handleMenuClose}>
+                                    {el}
+                                </MenuItem>
+                            )
+                        })
+                    }
+                </MenuList>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -92,20 +113,22 @@ export default function Navbar() {
                     aria-controls="primary-search-account-menu"
                     // aria-haspopup="true"
                     color="inherit"
-                    
-                    >
+                >
                     <FolderOpenIcon />
                 </IconButton>
                 kategorie
             </MenuItem>
             {isCategories && 
                 <div>
-                    <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
-                        dodaj artykuł
-                    </MenuItem>
-                    <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
-                        zarejestruj
-                    </MenuItem>
+                    {
+                        categories.map(el => {
+                            return (
+                                <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
+                                    {el}
+                                </MenuItem>
+                            )
+                        })
+                    }
                 </div>
             }
             <MenuItem className={classes.navLink}>
@@ -132,17 +155,17 @@ export default function Navbar() {
     return (
         <div className={classes.grow}>
             <AppBar position="static" className={classes.header}>
-                <Toolbar>
+                <Toolbar className={classes.navbar}>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        ExPocket
+                        New Cup Of Coffee
                     </Typography>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton 
                             aria-label="Categories"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            // onClick={handleProfileMenuOpen}
+                            // aria-controls={menuId}
+                            // aria-haspopup="true"
+                            // // onClick={handleProfileMenuOpen}
                             onMouseOver={handleProfileMenuOpen}
                             // onMouseLeave={handleMenuClose}
                             color="inherit" 
@@ -151,6 +174,9 @@ export default function Navbar() {
                             <Typography variant="body2" color="inherit" className={classes.navLink}>
                                 <FolderOpenIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
                                 kategorie
+                                <ArrowDropDownIcon
+                                    style={{fontSize: '20px', verticalAlign: 'text-top'}}
+                                />
                             </Typography>
                         </IconButton>
                         <IconButton aria-label="Add article" color="inherit" className={classes.navItem}>

@@ -7,9 +7,16 @@ export const useStyles = makeStyles(theme => ({
     },
     header: {
         backgroundColor: colors.mainPink,
+        boxShadow: 'none'
+    },
+    navbar: {
+        [theme.breakpoints.only('xl')]: {
+            maxWidth: '1440px',
+            margin: '0 auto',
+            width: '100%'
+        }
     },
     title: {
-        // display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
             padding: theme.spacing(3)
@@ -19,6 +26,7 @@ export const useStyles = makeStyles(theme => ({
         display: 'none',
         [theme.breakpoints.up('md')]: {
             display: 'flex',
+            marginLeft: 'auto'
         },
     },
     sectionMobile: {
@@ -31,7 +39,8 @@ export const useStyles = makeStyles(theme => ({
         textTransform: 'uppercase',
         display: 'block',
         textAlign: 'center',
-        lineHeight: 3
+        lineHeight: 2.2,
+        fontWeight: 500
     },
     navItem: {
         padding: '12px 20px',
@@ -41,14 +50,27 @@ export const useStyles = makeStyles(theme => ({
         }
     },
     catMenu: {
-        '& .MuiMenu-paper': {
-            backgroundColor: colors.mainPink,
-            color: 'white',
-            marginTop: '4rem',
-            borderRadius: '0 0 4px 4px',
-            /* width: 100%; */
-            textTransform: 'uppercase',
-            boxShadow: 'none'
+        backgroundColor: colors.mainPink,
+        color: 'white',
+        borderRadius: '0 0 4px 4px',
+        textTransform: 'uppercase',
+        boxShadow: 'none',
+        '& .MuiList-padding': {
+            padding: 0
+        },
+        '& .MuiMenuItem-gutters': {
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            padding: '2px 30px 2px 20px',
+            borderBottom: `1px solid ${colors.yellow}`,
+            '&:hover': {
+                color: colors.yellow,
+                backgroundColor: '#b66',
+            },
+            '&:last-child': {
+                borderBottom: 'none',
+
+            }
         }
     },
     mobileMenu: {
