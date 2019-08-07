@@ -68,7 +68,7 @@ export default function Navbar() {
             onMouseLeave={handleMenuClose}
             transition 
             disablePortal
-            keepMounted
+            // keepMounted
         >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -82,7 +82,7 @@ export default function Navbar() {
                     {
                         categories.map(el => {
                             return (
-                                <MenuItem onClick={handleMenuClose}>
+                                <MenuItem key={el} onClick={handleMenuClose}>
                                     {el}
                                 </MenuItem>
                             )
@@ -113,17 +113,21 @@ export default function Navbar() {
                     aria-controls="primary-search-account-menu"
                     // aria-haspopup="true"
                     color="inherit"
+                    className={classes.mobileIcon}
                 >
                     <FolderOpenIcon />
                 </IconButton>
                 kategorie
+                <ArrowDropDownIcon
+                    style={{fontSize: '20px', verticalAlign: 'text-top'}}
+                />
             </MenuItem>
             {isCategories && 
                 <div>
                     {
                         categories.map(el => {
                             return (
-                                <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
+                                <MenuItem key={el} className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
                                     {el}
                                 </MenuItem>
                             )

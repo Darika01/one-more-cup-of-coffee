@@ -6,7 +6,7 @@ export const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     header: {
-        backgroundColor: colors.mainPink,
+        backgroundColor: colors.pink,
         boxShadow: 'none'
     },
     navbar: {
@@ -50,7 +50,7 @@ export const useStyles = makeStyles(theme => ({
         }
     },
     catMenu: {
-        backgroundColor: colors.mainPink,
+        backgroundColor: colors.pink,
         color: 'white',
         borderRadius: '0 0 4px 4px',
         textTransform: 'uppercase',
@@ -79,10 +79,14 @@ export const useStyles = makeStyles(theme => ({
             marginTop: '2.5rem',
             width: '100%',
             maxWidth: '100%',
-            backgroundColor: colors.mainPink,
+            backgroundColor: colors.pink,
             color: 'white',        
             borderRadius: '0 0 4px 4px',
             boxShadow: 'none'
         }
+    },
+    mobileIcon: {
+        padding: '0 0.6rem',
+        verticalAlign: 'sub'
     }
 }))
