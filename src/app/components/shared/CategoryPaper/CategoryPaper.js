@@ -19,6 +19,19 @@ export default function CategoryPaper(props) {
     }
 
     const spacing = window.innerWidth < 576 ? 1 : 3;
+
+    function artCardData(art) {
+        const artCardData = {
+            artColors: art.artColors,
+            author: art.author,
+            category: art.category,
+            dateModified: art.dateModified,
+            likes: art.likes,
+            title: art.title,
+            _id: art._id
+        }
+        return artCardData
+    }
     
 
     return (
@@ -35,13 +48,13 @@ export default function CategoryPaper(props) {
             <Grid container spacing={spacing} alignItems="center">
                 {articles.map((art) => {
                     return (
-                        <Grid item xs={6} md={4} lg={3} key={art.id}>
-                            <ArticleCard category={category} artProps={art} />
+                        <Grid item xs={6} md={4} lg={3} key={art._id}>
+                            <ArticleCard category={category} art={artCardData(art)} />
                         </Grid>
                     )
                 })}
             </Grid>
-            <div style={{textAlign: 'right'}}>
+            <div className={classes.seeMoreBtn}>
                 <SeeMoreButton
                     variant="contained"
                     onClick={seeMore}

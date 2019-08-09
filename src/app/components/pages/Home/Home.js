@@ -7,18 +7,27 @@ export default function Home() {
 
     const articles = [
         {
-            id: 0,
-            artBgr: "#31335c",
-            artIcon: "favorite_border",
-            artIconColor: "#f5b2b2",
-            author: "Admin"
+            artColors: ["#fcfcfc", "#363547", "accessibility"],
+            author: "Admin",
+            category: "nauka",
+            dateModified: "Sat Mar 23 2019",
+            description: "Stole biło choru swéj pędu Białopiotrowiczem. Surowy biały powiem",
+            likes: [],
+            title: "Gatunki wiedzy ludzkiej",
+            user: "5c965c6718f9680c2079c59e",
+            _id: "5c9675b0d4afb706549a1b93"
         },
         {
-            id: 1,
-            artBgr: "#561435",
-            artIcon: "credit_card",
-            artIconColor: "#fcfcfc",
-            author: "Daria"
+            artColors: ["#e6eef3", "#561b14", "alarm"],
+            author: "Admin",
+            category: "nauka",
+            dateModified: "Sat Mar 23 2019",
+            description: "Fali ryki wyżółkłych przechrzciłby mody walane odgadywał zagorzalec ubrana. Gorejącém wesele maków zdała n",
+            likes: [],
+            title: "Wiedza naukowa (Kryteria naukowości wiedzy)",
+            user: "5c965c6718f9680c2079c59e",
+            __v: 0,
+            _id: "5c9675ecd4afb706549a1b94",
         },
     ]
 

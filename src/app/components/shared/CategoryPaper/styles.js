@@ -29,6 +29,13 @@ export const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('md')]: {
             width: '40%',
         },
+    },
+    seeMoreBtn: {
+        textAlign: 'right',
+        marginTop: '2rem',
+        [theme.breakpoints.only('xs')]: {
+            textAlign: 'center',
+        }
     }
 
 }))
