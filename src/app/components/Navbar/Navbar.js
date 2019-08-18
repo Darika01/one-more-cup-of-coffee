@@ -21,6 +21,8 @@ import InputIcon from '@material-ui/icons/Input';
 import ArrowDropDownIcon  from '@material-ui/icons/ArrowDropDown';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+import logo from '../../../assets/logo_one_more.png' // relative path to image 
+
 import {useStyles} from './styles';
 
 
@@ -160,9 +162,7 @@ export default function Navbar() {
         <div className={classes.grow}>
             <AppBar position="static" className={classes.header}>
                 <Toolbar className={classes.navbar}>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        New Cup Of Coffee
-                    </Typography>
+                    <img src={logo} alt="logo" width="220" />
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton 
