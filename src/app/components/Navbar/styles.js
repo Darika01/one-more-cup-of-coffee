@@ -88,5 +88,8 @@ export const useStyles = makeStyles(theme => ({
     mobileIcon: {
         padding: '0 0.6rem',
         verticalAlign: 'sub'
+    },
+    isActiveLink: {
+        color: colors.yellow
     }
 }))

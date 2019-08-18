@@ -37,7 +37,7 @@ export default function Layout(props) {
     return (
         <div className={classes.root}>
             <Navbar />
-            <main className={classes.layout}>
+            <main>
                     {/* <div className={classes.appBarSpacer} /> */}
                 <Container fixed>
                     {props.children}

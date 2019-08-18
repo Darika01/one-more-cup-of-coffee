@@ -4,16 +4,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Menu from '@material-ui/core/Menu';
 import MenuList from '@material-ui/core/MenuList';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Grow from '@material-ui/core/Grow';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -22,6 +17,7 @@ import ArrowDropDownIcon  from '@material-ui/icons/ArrowDropDown';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import logo from '../../../assets/logo_one_more.png' // relative path to image 
+import { NavLink } from 'react-router-dom'
 
 import {useStyles} from './styles';
 
@@ -84,9 +80,11 @@ export default function Navbar() {
                     {
                         categories.map(el => {
                             return (
-                                <MenuItem key={el} onClick={handleMenuClose}>
-                                    {el}
-                                </MenuItem>
+                                <NavLink key={el} to={`kategorie/${el}`}>
+                                    <MenuItem onClick={handleMenuClose}>
+                                        {el}
+                                    </MenuItem>
+                                </NavLink>
                             )
                         })
                     }
@@ -129,9 +127,11 @@ export default function Navbar() {
                     {
                         categories.map(el => {
                             return (
-                                <MenuItem key={el} className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
-                                    {el}
-                                </MenuItem>
+                                <NavLink key={el} to={`kategorie/${el}`}>
+                                    <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
+                                        {el}
+                                    </MenuItem>
+                                </NavLink>
                             )
                         })
                     }
@@ -162,7 +162,9 @@ export default function Navbar() {
         <div className={classes.grow}>
             <AppBar position="static" className={classes.header}>
                 <Toolbar className={classes.navbar}>
-                    <img src={logo} alt="logo" width="220" />
+                    <NavLink to="/">
+                        <img src={logo} alt="logo" width="220" />
+                    </NavLink>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton 
@@ -175,13 +177,20 @@ export default function Navbar() {
                             color="inherit" 
                             className={classes.navItem}
                         >
-                            <Typography variant="body2" color="inherit" className={classes.navLink}>
-                                <FolderOpenIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
-                                kategorie
-                                <ArrowDropDownIcon
-                                    style={{fontSize: '20px', verticalAlign: 'text-top'}}
-                                />
-                            </Typography>
+                        <Typography
+                            variant="body2"
+                            color="inherit"
+                            className={classes.navLink}
+                            component={NavLink}
+                            to="/"
+                            activeClassName='isActiveLink'
+                        >
+                            <FolderOpenIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
+                            kategorie
+                            <ArrowDropDownIcon
+                                style={{fontSize: '20px', verticalAlign: 'text-top'}}
+                            />
+                        </Typography>
                         </IconButton>
                         <IconButton aria-label="Add article" color="inherit" className={classes.navItem}>
                             <Typography variant="body2" color="inherit" className={classes.navLink}>

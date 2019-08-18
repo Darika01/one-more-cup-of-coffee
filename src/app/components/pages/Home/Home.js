@@ -29,13 +29,13 @@ export default function Home() {
             __v: 0,
             _id: "5c9675ecd4afb706549a1b94",
         },
-    ]
+    ];
 
     return (
         <div>
             {categories.map((cat) => {
                 return (
-                    <CategoryPaper key={cat} category={cat} articles={articles} />
+                    <CategoryPaper key={cat} category={cat} articles={articles} isSelectedCategory={false} />
                 )
             })}
         </div>

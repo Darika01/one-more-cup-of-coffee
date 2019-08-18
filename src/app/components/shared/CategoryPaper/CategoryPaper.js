@@ -1,22 +1,22 @@
 import React from 'react'
+// import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { Paper, Typography, Divider, Grid } from '@material-ui/core';
 
 import ArticleCard from '../ArticleCard/ArticleCard'
 
 import { SeeMoreButton } from '../buttons/Buttons';
+import clsx from 'clsx'
 import { useStyles } from './styles';
 
 export default function CategoryPaper(props) {
     const classes = useStyles();
 
     const category = props.category;
+    const isSelectedCategory = props.isSelectedCategory;
 
     const articles = props.articles;
-    
-    const seeMore = () => {
-        console.log('see more')
-    }
 
     const spacing = window.innerWidth < 576 ? 1 : 3;
 
@@ -40,9 +40,13 @@ export default function CategoryPaper(props) {
                 <Typography variant="h4" style={{display:'inline', fontWeight: 500}}>
                     Kategoria: 
                 </Typography>
-                <Typography variant="h4" component="span" className={classes.categoryTitle}>
-                    {category}
-                </Typography>
+                    <Typography 
+                        variant="h4" 
+                        component={Link} to={`/kategorie/${category}`}
+                        className={clsx(classes.categoryTitle, isSelectedCategory && classes.selected)}
+                    >
+                        {category}
+                    </Typography>
                 <Divider className={classes.divider} />
             </div>
             <Grid container spacing={spacing} alignItems="center">
@@ -54,14 +58,16 @@ export default function CategoryPaper(props) {
                     )
                 })}
             </Grid>
-            <div className={classes.seeMoreBtn}>
-                <SeeMoreButton
-                    variant="contained"
-                    onClick={seeMore}
-                >
-                    Zobacz więcej    
-                </SeeMoreButton>
-            </div>
+            {!isSelectedCategory &&
+                <div className={classes.seeMoreBtn}>
+                    <SeeMoreButton
+                        variant="contained"
+                        component={Link} to={`/kategorie/${category}`}
+                    >
+                        Zobacz więcej    
+                    </SeeMoreButton>
+                </div>
+            }
         </Paper>
     )
 }

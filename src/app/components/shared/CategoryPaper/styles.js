@@ -21,6 +21,13 @@ export const useStyles = makeStyles(theme => ({
         paddingLeft: '1rem',
         color: '#a96f44',
         fontWeight: 500,
+        '&:hover': {
+            color: '#c75253'
+        }
+    },
+    selected: {
+        color: '#c75253',
+        pointerEvents: 'none'
     },
     divider: {
         height: '2px',
