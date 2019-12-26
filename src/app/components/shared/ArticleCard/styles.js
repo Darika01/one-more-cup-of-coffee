@@ -5,7 +5,8 @@ export const useStyles = makeStyles(theme => ({
         // maxWidth: 345,
         '& .MuiCardContent-root': {
             padding: 0
-        }
+        },
+        position: 'relative',
         // height: '342px',
         // '& .MuiCardContent-root': {
         //     '&:hover': {
@@ -16,16 +17,25 @@ export const useStyles = makeStyles(theme => ({
         //         width: '100%',
         //         height: '25px',
         //         backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1))',}
-        // }
+        // },
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '100%'
+    },
+    cardContentBgr: {
+        backgroundColor: 'rgb(56, 56, 56);',
+        opacity: 1
     },
     cardBgr: {
-        height: 169,
+        minHeight: 169,
         position: 'relative',
         [theme.breakpoints.only('xs')]: {
             height: 140
         },
         backgroundColor: props => props.art.artColors[1],
-        textAlign: 'center'
+        textAlign: 'center',
+        transition: '0.8s ease'
     },
     cardIconPosition: {
         // -webkit-transform: translate(-50%,-50%),
@@ -35,15 +45,21 @@ export const useStyles = makeStyles(theme => ({
         left: '50%'
     },
     cardIcon: {
-        fontSize: '1.5rem',
-        transition: 'all 0.35s',
+        // fontSize: '1.5rem',
+        // transition: 'all 0.35s',
+        transition: '0.8s ease',
         [theme.breakpoints.only('xs')]: {
             marginTop: '30%'
         },
         color: props => props.art.artColors[0]
     },
     cardHover: {
-        fontSize: '2rem'
+        // fontSize: '2rem'
+        opacity: 0.7
+    },
+    cardIconHover: {
+        // fontSize: '2rem'
+        transform: ' scale(1.3)'
     },
     cardContent: {
         padding: '1.25rem',
@@ -55,7 +71,7 @@ export const useStyles = makeStyles(theme => ({
         }
     },
     cardContentOpacity: {
-        content: '',
+        content: `''`,
         position: 'absolute',
         right: 0,
         bottom: 0,

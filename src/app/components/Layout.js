@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Navbar/Navbar';
@@ -7,7 +7,7 @@ import { Container } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
-        flexDirection:'column',
+        flexDirection: 'column',
         '& .MuiTypography-h4': {
             [theme.breakpoints.only('xs')]: {
                 fontSize: '1.8rem'
@@ -24,12 +24,17 @@ const useStyles = makeStyles(theme => ({
             },
             [theme.breakpoints.up('lg')]: {
                 maxWidth: '1140px'
-            },
+            }
         }
     },
     appBarSpacer: theme.mixins.toolbar,
-    
-}))
+    layout: {
+        height: `calc(100vh - 84px)`,
+        '& > div': {
+            height: '100%'
+        }
+    }
+}));
 
 export default function Layout(props) {
     const classes = useStyles();
@@ -37,13 +42,10 @@ export default function Layout(props) {
     return (
         <div className={classes.root}>
             <Navbar />
-            <main>
-                    {/* <div className={classes.appBarSpacer} /> */}
-                <Container fixed>
-                    {props.children}
-                </Container>
+            <main className={classes.layout}>
+                {/* <div className={classes.appBarSpacer} /> */}
+                <Container fixed>{props.children}</Container>
             </main>
-
         </div>
-    )
+    );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 // import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import { Paper, Typography, Divider, Grid } from '@material-ui/core';
+import { Paper, Typography, Divider } from '@material-ui/core';
 
 import ArticleCard from '../ArticleCard/ArticleCard';
 
@@ -17,8 +17,6 @@ export default function CategoryPaper(props) {
     const isSelectedCategory = props.isSelectedCategory;
 
     const articles = props.articles;
-
-    const spacing = window.innerWidth < 576 ? 1 : 3;
 
     function artCardData(art) {
         const artCardData = {
@@ -55,7 +53,19 @@ export default function CategoryPaper(props) {
                 </Typography>
                 <Divider className={classes.divider} />
             </div>
-            <Grid container spacing={spacing} alignItems="center">
+            <div className={classes.container}>
+                {articles.map(art => {
+                    return (
+                        <div key={art._id}>
+                            <ArticleCard
+                                category={category}
+                                art={artCardData(art)}
+                            />
+                        </div>
+                    );
+                })}
+            </div>
+            {/* <Grid container spacing={spacing} alignItems="center">
                 {articles.map(art => {
                     return (
                         <Grid item xs={6} md={4} lg={3} key={art._id}>
@@ -66,7 +76,7 @@ export default function CategoryPaper(props) {
                         </Grid>
                     );
                 })}
-            </Grid>
+            </Grid> */}
             {!isSelectedCategory && (
                 <div className={classes.seeMoreBtn}>
                     <SeeMoreButton

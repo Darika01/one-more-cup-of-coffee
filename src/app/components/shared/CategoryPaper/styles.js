@@ -4,7 +4,7 @@ export const useStyles = makeStyles(theme => ({
     paper: {
         padding: theme.spacing(6, 3),
         [theme.breakpoints.only('xs')]: {
-            padding: theme.spacing(6, 1),
+            padding: theme.spacing(6, 1)
         },
         backgroundColor: '#f3f1f1',
         boxShadow: '0 0 20px 0 rgba(0,0,0,.2), 0 6px 20px 0 rgba(0,0,0,.19)',
@@ -34,15 +34,27 @@ export const useStyles = makeStyles(theme => ({
         backgroundColor: '#969696',
         marginTop: '0.5rem',
         [theme.breakpoints.up('md')]: {
-            width: '40%',
-        },
+            width: '40%'
+        }
     },
     seeMoreBtn: {
         textAlign: 'right',
         marginTop: '2rem',
         [theme.breakpoints.only('xs')]: {
-            textAlign: 'center',
+            textAlign: 'center'
+        }
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > div': {
+            margin: 8,
+            flex: '0 0 25%',
+            maxWidth: 'calc(25% - 16px)',
+            [theme.breakpoints.down('sm')]: {
+                flex: '0 0 50%',
+                maxWidth: 'calc(50% - 16px)'
+            }
         }
     }
-
-}))
+}));

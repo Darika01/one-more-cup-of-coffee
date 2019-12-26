@@ -13,14 +13,16 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import InputIcon from '@material-ui/icons/Input';
-import ArrowDropDownIcon  from '@material-ui/icons/ArrowDropDown';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CloseIcon from '@material-ui/icons/Close';
 
-import logo from '../../../assets/logo_one_more.png' // relative path to image 
-import { NavLink } from 'react-router-dom'
+import logo from '../../../assets/logo_one_more.png'; // relative path to image
+import { NavLink } from 'react-router-dom';
 
-import {useStyles} from './styles';
-
+import { useStyles } from './styles';
 
 export default function Navbar() {
     const classes = useStyles();
@@ -30,14 +32,19 @@ export default function Navbar() {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const [isCategories, setIsCategories] = React.useState(false);
-    const categories = ['Wszystkie', 'Nauka', 'Sztuka', 'Filozofia', 'Psychologia'];
-
+    const categories = [
+        'Wszystkie',
+        'Nauka',
+        'Sztuka',
+        'Filozofia',
+        'Psychologia'
+    ];
 
     function handleProfileMenuOpen(event) {
         setAnchorEl(event.currentTarget);
     }
     function showCategories() {
-        setIsCategories(!isCategories)
+        setIsCategories(!isCategories);
     }
 
     function handleMobileMenuClose() {
@@ -55,44 +62,49 @@ export default function Navbar() {
 
     React.useEffect(() => {
         if (!isMobileMenuOpen && isCategories) {
-            setIsCategories(false)
+            setIsCategories(false);
         }
-    }, [isMobileMenuOpen])
+        // eslint-disable-next-line
+    }, [isMobileMenuOpen]);
 
     const renderMenu = (
-        <Popper 
-            open={isMenuOpen} 
+        <Popper
+            open={isMenuOpen}
             anchorEl={anchorEl}
             onMouseLeave={handleMenuClose}
-            transition 
+            transition
             disablePortal
             // keepMounted
         >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper className={classes.catMenu}>
-                <MenuList>
-                    {
-                        categories.map(el => {
-                            return (
-                                <NavLink key={el} to={`kategorie/${el}`}>
-                                    <MenuItem onClick={handleMenuClose}>
-                                        {el}
-                                    </MenuItem>
-                                </NavLink>
-                            )
-                        })
-                    }
-                </MenuList>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+            {({ TransitionProps, placement }) => (
+                <Grow
+                    {...TransitionProps}
+                    style={{
+                        transformOrigin:
+                            placement === 'bottom'
+                                ? 'center top'
+                                : 'center bottom'
+                    }}
+                >
+                    <Paper className={classes.catMenu}>
+                        <MenuList>
+                            {categories.map(el => {
+                                return (
+                                    <NavLink
+                                        key={el}
+                                        to={`/kategorie/${el.toLowerCase()}`}
+                                    >
+                                        <MenuItem onClick={handleMenuClose}>
+                                            {el}
+                                        </MenuItem>
+                                    </NavLink>
+                                );
+                            })}
+                        </MenuList>
+                    </Paper>
+                </Grow>
+            )}
+        </Popper>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
@@ -119,24 +131,30 @@ export default function Navbar() {
                 </IconButton>
                 kategorie
                 <ArrowDropDownIcon
-                    style={{fontSize: '20px', verticalAlign: 'text-top'}}
+                    style={{ fontSize: '20px', verticalAlign: 'text-top' }}
                 />
             </MenuItem>
-            {isCategories && 
+            {isCategories && (
                 <div>
-                    {
-                        categories.map(el => {
-                            return (
-                                <NavLink key={el} to={`kategorie/${el}`}>
-                                    <MenuItem className={classes.navLink} style={{borderBottom: '1px solid #f8f6c4'}}>
-                                        {el}
-                                    </MenuItem>
-                                </NavLink>
-                            )
-                        })
-                    }
+                    {categories.map(el => {
+                        return (
+                            <NavLink
+                                key={el}
+                                to={`/kategorie/${el.toLowerCase()}`}
+                            >
+                                <MenuItem
+                                    className={classes.navLink}
+                                    style={{
+                                        borderBottom: '1px solid #f8f6c4'
+                                    }}
+                                >
+                                    {el}
+                                </MenuItem>
+                            </NavLink>
+                        );
+                    })}
                 </div>
-            }
+            )}
             <MenuItem className={classes.navLink}>
                 <IconButton aria-label="Add article" color="inherit">
                     <AddBoxIcon />
@@ -160,53 +178,117 @@ export default function Navbar() {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="static" className={classes.header}>
+            <AppBar
+                position="static"
+                className={classes.header}
+                onMouseLeave={handleMenuClose}
+            >
                 <Toolbar className={classes.navbar}>
                     <NavLink to="/">
                         <img src={logo} alt="logo" width="220" />
                     </NavLink>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton 
+                        <IconButton
                             aria-label="Categories"
                             // aria-controls={menuId}
                             // aria-haspopup="true"
                             // // onClick={handleProfileMenuOpen}
                             onMouseOver={handleProfileMenuOpen}
                             // onMouseLeave={handleMenuClose}
-                            color="inherit" 
+                            color="inherit"
                             className={classes.navItem}
                         >
-                        <Typography
-                            variant="body2"
-                            color="inherit"
-                            className={classes.navLink}
-                            component={NavLink}
-                            to="/"
-                            activeClassName='isActiveLink'
-                        >
-                            <FolderOpenIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
-                            kategorie
-                            <ArrowDropDownIcon
-                                style={{fontSize: '20px', verticalAlign: 'text-top'}}
-                            />
-                        </Typography>
+                            <Typography
+                                variant="body2"
+                                color="inherit"
+                                className={classes.navLink}
+                                component={NavLink}
+                                to="/"
+                                activeClassName="isActiveLink"
+                            >
+                                <FolderOpenIcon
+                                    style={{
+                                        display: 'block',
+                                        margin: '0 auto',
+                                        fontSize: '30px'
+                                    }}
+                                />
+                                kategorie
+                                {/* <ArrowDropDownIcon
+                                    style={{
+                                        fontSize: '20px',
+                                        verticalAlign: 'text-top'
+                                    }}
+                                /> */}
+                                {anchorEl === null ? (
+                                    <ExpandMoreIcon
+                                        style={{ verticalAlign: 'middle' }}
+                                    />
+                                ) : (
+                                    <ExpandLessIcon
+                                        style={{ verticalAlign: 'middle' }}
+                                    />
+                                )}
+                            </Typography>
                         </IconButton>
-                        <IconButton aria-label="Add article" color="inherit" className={classes.navItem}>
-                            <Typography variant="body2" color="inherit" className={classes.navLink}>
-                                <AddBoxIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
+                        <IconButton
+                            aria-label="Add article"
+                            color="inherit"
+                            className={classes.navItem}
+                        >
+                            <Typography
+                                variant="body2"
+                                color="inherit"
+                                className={classes.navLink}
+                            >
+                                <AddBoxIcon
+                                    style={{
+                                        display: 'block',
+                                        margin: '0 auto',
+                                        fontSize: '30px'
+                                    }}
+                                />
                                 dodaj artykuł
                             </Typography>
                         </IconButton>
-                        <IconButton aria-label="Sign up" color="inherit" className={classes.navItem}>
-                            <Typography variant="body2" color="inherit" className={classes.navLink}>
-                                <PersonAddIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
+                        <IconButton
+                            aria-label="Sign up"
+                            color="inherit"
+                            className={classes.navItem}
+                        >
+                            <Typography
+                                variant="body2"
+                                color="inherit"
+                                className={classes.navLink}
+                            >
+                                <PersonAddIcon
+                                    style={{
+                                        display: 'block',
+                                        margin: '0 auto',
+                                        fontSize: '30px'
+                                    }}
+                                />
                                 zarejestruj
                             </Typography>
                         </IconButton>
-                        <IconButton aria-label="Sign in" color="inherit" className={classes.navItem}>
-                            <Typography variant="body2" color="inherit" className={classes.navLink}>
-                                <InputIcon style={{display: 'block', margin: '0 auto', fontSize: "30px"}} />
+                        <IconButton
+                            aria-label="Sign in"
+                            color="inherit"
+                            className={classes.navItem}
+                        >
+                            <Typography
+                                variant="body2"
+                                color="inherit"
+                                className={classes.navLink}
+                            >
+                                <InputIcon
+                                    style={{
+                                        display: 'block',
+                                        margin: '0 auto',
+                                        fontSize: '30px'
+                                    }}
+                                />
                                 Zaloguj
                             </Typography>
                         </IconButton>
@@ -218,15 +300,19 @@ export default function Navbar() {
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
                             color="inherit"
-                            >
-                            <MoreIcon />
+                        >
+                            {mobileMoreAnchorEl === null ? (
+                                <MoreVertIcon />
+                            ) : (
+                                <CloseIcon />
+                            )}
                         </IconButton>
                     </div>
                 </Toolbar>
+                {renderMobileMenu}
+                {/* </div> */}
+                {renderMenu}
             </AppBar>
-            {renderMobileMenu}
-            {/* </div> */}
-            {renderMenu}
         </div>
     );
 }

@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
-import {colors} from 'utils/colors.js';
+import { colors } from 'utils/colors.js';
 
 export const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
+        zIndex: 1000
     },
     header: {
         backgroundColor: colors.pink,
@@ -20,20 +21,20 @@ export const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
             padding: theme.spacing(3)
-        },
+        }
     },
     sectionDesktop: {
         display: 'none',
         [theme.breakpoints.up('md')]: {
             display: 'flex',
             marginLeft: 'auto'
-        },
+        }
     },
     sectionMobile: {
         display: 'flex',
         [theme.breakpoints.up('md')]: {
-            display: 'none',
-        },
+            display: 'none'
+        }
     },
     navLink: {
         textTransform: 'uppercase',
@@ -65,11 +66,10 @@ export const useStyles = makeStyles(theme => ({
             borderBottom: `1px solid ${colors.yellow}`,
             '&:hover': {
                 color: colors.yellow,
-                backgroundColor: '#b66',
+                backgroundColor: '#b66'
             },
             '&:last-child': {
-                borderBottom: 'none',
-
+                borderBottom: 'none'
             }
         }
     },
@@ -80,7 +80,7 @@ export const useStyles = makeStyles(theme => ({
             width: '100%',
             maxWidth: '100%',
             backgroundColor: colors.pink,
-            color: 'white',        
+            color: 'white',
             borderRadius: '0 0 4px 4px',
             boxShadow: 'none'
         }
@@ -92,4 +92,4 @@ export const useStyles = makeStyles(theme => ({
     isActiveLink: {
         color: colors.yellow
     }
-}))
+}));
