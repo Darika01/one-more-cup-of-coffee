@@ -1,13 +1,14 @@
 import React from 'react';
 import CategoryPaper from '../../shared/CategoryPaper/CategoryPaper';
 import useHome from 'components/hooks/Home/Home';
-import Loader from '../../shared/loaders/Loader';
+import Loader from 'components/shared/loaders/Loader';
+import { Container } from '@material-ui/core';
 
 export default function Home() {
     const { Articles, ShowLoader } = useHome();
 
     return (
-        <>
+        <Container fixed>
             {Object.keys(Articles).map(cat => {
                 if (Articles[cat] !== null) {
                     return (
@@ -21,6 +22,6 @@ export default function Home() {
                 } else return null;
             })}
             {ShowLoader && <Loader />}
-        </>
+        </Container>
     );
 }

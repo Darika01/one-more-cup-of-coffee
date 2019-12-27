@@ -1,3 +1,4 @@
+//flow
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -10,7 +11,22 @@ import CardContent from '@material-ui/core/CardContent';
 import { useStyles } from './styles';
 import { Link } from '@material-ui/core';
 
-export default function ArticleCard(props) {
+interface Art {
+    artColors: array;
+    author: string;
+    category: string;
+    dateModified: string;
+    likes: array;
+    title: string;
+    _id: string;
+}
+
+interface Props {
+    category: string;
+    art: Art;
+}
+
+export default function ArticleCard(props: Props) {
     const classes = useStyles(props);
 
     const art = props.art;
@@ -19,7 +35,10 @@ export default function ArticleCard(props) {
 
     return (
         <React.Fragment>
-            <Link component={RouterLink} to={'/'}>
+            <Link
+                component={RouterLink}
+                to={`/kategorie/${art.category}/${art._id}`}
+            >
                 <Card
                     className={classes.card}
                     onMouseOver={() => setIsCardHover(true)}
@@ -36,7 +55,7 @@ export default function ArticleCard(props) {
                                 <div className={classes.cardIconPosition}>
                                     <i
                                         className={clsx(
-                                            'fa fa-3x mt-5',
+                                            'fa fa-3x',
                                             art.artColors[2],
                                             classes.cardIcon,
                                             IsCardHover && classes.cardIconHover

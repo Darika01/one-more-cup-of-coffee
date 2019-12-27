@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from './Navbar/Navbar';
-import { Container } from '@material-ui/core';
+import Navbar from './core/Navbar/Navbar';
+import Footer from './core/Footer/Footer';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -13,26 +13,15 @@ const useStyles = makeStyles(theme => ({
                 fontSize: '1.8rem'
             }
         },
-        '& .MuiContainer-root': {
-            paddingLeft: '15px',
-            paddingRight: '15px',
-            [theme.breakpoints.only('xs')]: {
-                padding: 0
-            },
-            [theme.breakpoints.only('sm')]: {
-                maxWidth: '720px'
-            },
-            [theme.breakpoints.up('lg')]: {
-                maxWidth: '1140px'
-            }
-        }
+        position: 'relative'
     },
     appBarSpacer: theme.mixins.toolbar,
     layout: {
-        height: `calc(100vh - 84px)`,
-        '& > div': {
-            height: '100%'
-        }
+        minHeight: `calc(100vh - 84px)`,
+        marginBottom: 120
+        // '& > div': {
+        //     height: '100%'
+        // }
     }
 }));
 
@@ -42,10 +31,8 @@ export default function Layout(props) {
     return (
         <div className={classes.root}>
             <Navbar />
-            <main className={classes.layout}>
-                {/* <div className={classes.appBarSpacer} /> */}
-                <Container fixed>{props.children}</Container>
-            </main>
+            <main className={classes.layout}>{props.children}</main>
+            <Footer />
         </div>
     );
 }

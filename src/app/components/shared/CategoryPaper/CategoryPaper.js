@@ -2,13 +2,13 @@ import React from 'react';
 // import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import { Paper, Typography, Divider } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
 import ArticleCard from '../ArticleCard/ArticleCard';
 
 import { SeeMoreButton } from '../buttons/Buttons';
-import clsx from 'clsx';
 import { useStyles } from './styles';
+import CategoryTitle from './CategoryTitle';
 
 export default function CategoryPaper(props) {
     const classes = useStyles();
@@ -18,65 +18,21 @@ export default function CategoryPaper(props) {
 
     const articles = props.articles;
 
-    function artCardData(art) {
-        const artCardData = {
-            artColors: art.artColors,
-            author: art.author,
-            category: art.category,
-            dateModified: art.dateModified,
-            likes: art.likes,
-            title: art.title,
-            _id: art._id
-        };
-        return artCardData;
-    }
-
     return (
         <Paper className={classes.paper}>
-            <div className={classes.title}>
-                <Typography
-                    variant="h4"
-                    style={{ display: 'inline', fontWeight: 500 }}
-                >
-                    Kategoria:
-                </Typography>
-                <Typography
-                    variant="h4"
-                    component={Link}
-                    to={`/kategorie/${category}`}
-                    className={clsx(
-                        classes.categoryTitle,
-                        isSelectedCategory && classes.selected
-                    )}
-                >
-                    {category}
-                </Typography>
-                <Divider className={classes.divider} />
-            </div>
+            <CategoryTitle
+                category={category}
+                isSelectedCategory={isSelectedCategory}
+            />
             <div className={classes.container}>
                 {articles.map(art => {
                     return (
                         <div key={art._id}>
-                            <ArticleCard
-                                category={category}
-                                art={artCardData(art)}
-                            />
+                            <ArticleCard category={category} art={art} />
                         </div>
                     );
                 })}
             </div>
-            {/* <Grid container spacing={spacing} alignItems="center">
-                {articles.map(art => {
-                    return (
-                        <Grid item xs={6} md={4} lg={3} key={art._id}>
-                            <ArticleCard
-                                category={category}
-                                art={artCardData(art)}
-                            />
-                        </Grid>
-                    );
-                })}
-            </Grid> */}
             {!isSelectedCategory && (
                 <div className={classes.seeMoreBtn}>
                     <SeeMoreButton

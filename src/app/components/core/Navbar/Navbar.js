@@ -19,7 +19,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloseIcon from '@material-ui/icons/Close';
 
-import logo from '../../../assets/logo_one_more.png'; // relative path to image
+import logo from '../../../../assets/logo_one_more.png'; // relative path to image
 import { NavLink } from 'react-router-dom';
 
 import { useStyles } from './styles';
