@@ -1,7 +1,7 @@
 import React from 'react';
 import CategoryPaper from '../../shared/CategoryPaper/CategoryPaper';
-import useHome from 'components/hooks/Home/Home';
-import Loader from 'components/shared/loaders/Loader';
+import useHome from 'app/components/hooks/Home/Home';
+import Loader from 'app/components/shared/loaders/Loader';
 import { Container } from '@material-ui/core';
 
 export default function Home() {

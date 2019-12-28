@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
     BrowserRouter as Router,
@@ -7,13 +7,13 @@ import {
     Redirect
 } from 'react-router-dom';
 
-import Layout from './components/Layout';
-import Home from './components/pages/Home/Home';
-import SingleCategory from './components/pages/SingleCategory/SingleCategory';
-import NotFound from './components/pages/NotFound/NotFound';
+import Layout from 'app/components/Layout';
+import Home from 'app/components/pages/Home/Home';
+import SingleCategory from 'app/components/pages/SingleCategory/SingleCategory';
+import NotFound from 'app/components/pages/NotFound/NotFound';
 
 import { useStyles } from './styles';
-import Article from './components/pages/Article/Article';
+import Article from 'app/components/pages/Article/Article';
 
 function App() {
     useStyles();

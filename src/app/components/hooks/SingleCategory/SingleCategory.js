@@ -1,6 +1,6 @@
-//flow
+//@flow
 import { useState, useEffect } from 'react';
-import API from 'api';
+import API from 'app/api';
 function useSingleCategory(category: string) {
     const [Articles, setArticles] = useState({ arts: [] });
 
@@ -10,7 +10,7 @@ function useSingleCategory(category: string) {
         setShowLoader(true);
         API.get(`articles/category/?category=${cat}`).then(
             res => {
-                setArticles(articles => {
+                setArticles((articles: Object) => {
                     return { arts: articles.arts.concat(res.data) };
                 });
                 setShowLoader(false);

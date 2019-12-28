@@ -1,4 +1,4 @@
-//flow
+//@flow
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
@@ -11,20 +11,20 @@ import CardContent from '@material-ui/core/CardContent';
 import { useStyles } from './styles';
 import { Link } from '@material-ui/core';
 
-interface Art {
-    artColors: array;
-    author: string;
-    category: string;
-    dateModified: string;
-    likes: array;
-    title: string;
-    _id: string;
-}
+type ArtProps = {
+    artColors: Array<string>,
+    author: string,
+    category: string,
+    dateModified: string,
+    likes: Array<string>,
+    title: string,
+    _id: string
+};
 
-interface Props {
-    category: string;
-    art: Art;
-}
+type Props = {
+    category: string,
+    art: ArtProps
+};
 
 export default function ArticleCard(props: Props) {
     const classes = useStyles(props);

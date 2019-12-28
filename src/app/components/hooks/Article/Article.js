@@ -1,16 +1,15 @@
-//flow
+//@flow
 import { useState, useEffect } from 'react';
-import API from 'api';
-function useArticle(id: string, history) {
+import API from 'app/api';
+function useArticle(id: string, history: Object) {
     const [ArticleData, setArticleData] = useState(null);
 
     const [ShowLoader, setShowLoader] = useState(false);
 
-    const getArticleData = cat => {
+    const getArticleData = () => {
         setShowLoader(true);
         API.get(`articles/article?_id=${id}`).then(
             res => {
-                console.log(res);
                 setArticleData(res.data.article);
                 setShowLoader(false);
             },
@@ -19,7 +18,7 @@ function useArticle(id: string, history) {
                 if (err.response.status === 404) {
                     history.push('/404?mess=Artykuł nie został znaleziony');
                 }
-                console.log(err.response.status);
+                console.log(err);
             }
         );
     };

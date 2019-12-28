@@ -1,6 +1,6 @@
-//flow
+//@flow
 import { useState, useEffect } from 'react';
-import API from 'api';
+import API from 'app/api';
 function useHome() {
     const [Articles, setArticles] = useState({
         nauka: null,
@@ -14,7 +14,7 @@ function useHome() {
         setShowLoader(true);
         API.get(`articles/category/?category=${cat}`).then(
             res => {
-                setArticles(articles => ({
+                setArticles((articles: Object) => ({
                     ...articles,
                     [cat]: res.data.reverse().splice(0, 4)
                 }));
@@ -28,7 +28,7 @@ function useHome() {
     };
 
     useEffect(() => {
-        Object.keys(Articles).forEach(cat => {
+        Object.keys(Articles).forEach((cat: string) => {
             getArticles(cat);
         });
         // eslint-disable-next-line

@@ -1,10 +1,19 @@
+//@flow
 import React from 'react';
 import CategoryPaper from '../../shared/CategoryPaper/CategoryPaper';
 import Loader from '../../shared/loaders/Loader';
-import useSingleCategory from 'components/hooks/SingleCategory/SingleCategory';
+import useSingleCategory from 'app/components/hooks/SingleCategory/SingleCategory';
 import { Container } from '@material-ui/core';
 
-export default function SingleCategory(props) {
+type Props = {
+    match: {
+        params: {
+            category: string
+        }
+    }
+};
+
+export default function SingleCategory(props: Props) {
     const category = props.match.params.category;
     const { Articles, ShowLoader } = useSingleCategory(category);
 

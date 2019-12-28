@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
@@ -6,7 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { useStyles } from './styles';
 
-export default function CategoryTitle(props) {
+type Props = {
+    category: string,
+    isSelectedCategory: boolean
+};
+
+export default function CategoryTitle(props: Props) {
     const classes = useStyles();
     return (
         <div className={classes.title}>

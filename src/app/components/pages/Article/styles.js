@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(theme => ({
     headerContainer: {
         backgroundColor: props => props.bgrColor,
-        minHeight: 632,
+        minHeight: 600,
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
@@ -13,7 +13,8 @@ export const useStyles = makeStyles(theme => ({
         alignSelf: 'center',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: '32px 8px'
     },
     title: {
         textAlign: 'center',
@@ -21,26 +22,26 @@ export const useStyles = makeStyles(theme => ({
         padding: 16
     },
     titleText: {
-        marginBottom: 46,
+        marginBottom: 68,
         '& .MuiTypography-h2': {
-            fontSize: 54,
+            fontSize: 50,
             fontWeight: 500,
             [theme.breakpoints.down('sm')]: {
-                fontSize: 42
+                fontSize: 38
             }
         }
     },
     titleAuthor: {
         '& .MuiTypography-subtitle1': {
-            fontSize: 28,
+            fontSize: 24,
 
             [theme.breakpoints.down('sm')]: {
-                fontSize: 22
+                fontSize: 18
             }
         }
     },
     titleAuthorIcon: {
-        fontSize: 48
+        fontSize: 44
     },
     titleInfo: {
         display: 'flex',
@@ -53,10 +54,10 @@ export const useStyles = makeStyles(theme => ({
             paddingRight: 32
         },
         '& .MuiTypography-subtitle1': {
-            fontSize: 32,
+            fontSize: 28,
 
             [theme.breakpoints.down('sm')]: {
-                fontSize: 24
+                fontSize: 20
             },
             color: props => props.color
         }

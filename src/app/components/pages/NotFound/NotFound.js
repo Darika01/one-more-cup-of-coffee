@@ -1,14 +1,25 @@
 import React from 'react';
 import queryString from 'query-string';
-import error from './../../../../assets/img/error.png';
+import error from 'assets/img/error.png';
 import { useStyles } from './styles';
 import { Typography, Container } from '@material-ui/core';
 
-export default function NotFound(props) {
-    const queryValues = queryString.parse(props.location.search);
-    const mess = queryValues.mess;
+type Props = {
+    location: {
+        search: string
+    },
+    queryValues: {
+        mess?: string
+    }
+};
 
-    console.log(mess);
+export default function NotFound(props: Props) {
+    const queryValues =
+        props.location.search !== ''
+            ? queryString.parse(props.location.search)
+            : '';
+    const mess = props.location.search !== '' ? queryValues.mess : undefined;
+
     const classes = useStyles();
     return (
         <Container fixed>

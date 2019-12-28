@@ -1,12 +1,24 @@
+//@flow
 import React from 'react';
 import Loader from '../../shared/loaders/Loader';
 import clsx from 'clsx';
-import useArticle from 'components/hooks/Article/Article';
+import moment from 'moment';
+import useArticle from 'app/components/hooks/Article/Article';
 import { useStyles } from './styles.js';
-import { Typography, Container } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import CategoryTitle from '../../shared/CategoryPaper/CategoryTitle';
 
-export default function Article(props) {
+type Props = {
+    history: Object,
+    match: {
+        params: {
+            id: string
+        }
+    }
+};
+
+export default function Article(props: Props) {
     const { ArticleData, ShowLoader } = useArticle(
         props.match.params.id,
         props.history
@@ -18,6 +30,11 @@ export default function Article(props) {
     };
 
     const classes = useStyles(artColorProps);
+
+    const setDate = (date: string) => {
+        date = moment().format('DD.MM.YYYY');
+        return date;
+    };
 
     return (
         <>
@@ -77,7 +94,7 @@ export default function Article(props) {
                                         )}
                                     ></i>
                                     <Typography variant="subtitle1">
-                                        {ArticleData.dateModified}
+                                        {setDate(ArticleData.dateModified)}
                                     </Typography>
                                 </div>
                             </div>
