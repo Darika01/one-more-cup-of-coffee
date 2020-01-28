@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoryPaper from '../../shared/CategoryPaper/CategoryPaper';
-import useHome from 'app/components/hooks/Home/Home';
+import useHome from 'app/actions/Home/Home';
 import Loader from 'app/components/shared/loaders/Loader';
 import { Container } from '@material-ui/core';
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import CategoryPaper from '../../shared/CategoryPaper/CategoryPaper';
 import Loader from '../../shared/loaders/Loader';
-import useSingleCategory from 'app/components/hooks/SingleCategory/SingleCategory';
+import useSingleCategory from 'app/actions/SingleCategory/SingleCategory';
 import { Container } from '@material-ui/core';
 
 type Props = {

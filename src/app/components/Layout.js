@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
     layout: {
         minHeight: `calc(100vh - 84px)`,
-        marginBottom: 120
+        marginBottom: 120,
+        backgroundColor: '#fdfdfd'
         // '& > div': {
         //     height: '100%'
         // }

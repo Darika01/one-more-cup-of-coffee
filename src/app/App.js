@@ -14,6 +14,8 @@ import NotFound from 'app/components/pages/NotFound/NotFound';
 
 import { useStyles } from './styles';
 import Article from 'app/components/pages/Article/Article';
+import MainCharts from 'app/components/pages/Charts/MainCharts';
+import AddArticleForm from './components/pages/AddArticleForm/AddArticleForm';
 
 function App() {
     useStyles();
@@ -22,7 +24,8 @@ function App() {
             <Router>
                 <Layout>
                     <Switch>
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={MainCharts} />
+                        {/* <Route exact path="/" component={Home} /> */}
                         <Route
                             exact
                             path="/kategorie/:category"
@@ -31,6 +34,14 @@ function App() {
                         <Route
                             path="/kategorie/:category/:id"
                             component={Article}
+                        />
+                        <Route
+                            path="/dodaj-artykul"
+                            component={AddArticleForm}
+                        />
+                        <Route
+                            path="/edytuj-artykul/:id"
+                            component={AddArticleForm}
                         />
                         {/* <Route path="/404/:not-found" component={NotFound} /> */}
                         <Route path="/404" component={NotFound} />

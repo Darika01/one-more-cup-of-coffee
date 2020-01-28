@@ -1,4 +1,5 @@
-import React from 'react';
+//@flow
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,11 +21,16 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloseIcon from '@material-ui/icons/Close';
 
 import logo from '../../../../assets/logo_one_more.png'; // relative path to image
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 import { useStyles } from './styles';
 
-export default function Navbar() {
+type Props = {
+    location: {
+        pathname: string
+    }
+};
+export function Navbar(props: Props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -60,12 +66,16 @@ export default function Navbar() {
         setMobileMoreAnchorEl(event.currentTarget);
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!isMobileMenuOpen && isCategories) {
             setIsCategories(false);
         }
         // eslint-disable-next-line
     }, [isMobileMenuOpen]);
+
+    useEffect(() => {
+        handleMenuClose();
+    }, [props.location.pathname]);
 
     const renderMenu = (
         <Popper
@@ -155,12 +165,14 @@ export default function Navbar() {
                     })}
                 </div>
             )}
-            <MenuItem className={classes.navLink}>
-                <IconButton aria-label="Add article" color="inherit">
-                    <AddBoxIcon />
-                </IconButton>
-                dodaj artykuł
-            </MenuItem>
+            <NavLink to="/dodaj-artykul">
+                <MenuItem className={classes.navLink}>
+                    <IconButton aria-label="Add article" color="inherit">
+                        <AddBoxIcon />
+                    </IconButton>
+                    dodaj artykuł
+                </MenuItem>
+            </NavLink>
             <MenuItem className={classes.navLink}>
                 <IconButton aria-label="Sign up" color="inherit">
                     <PersonAddIcon />
@@ -237,20 +249,22 @@ export default function Navbar() {
                             color="inherit"
                             className={classes.navItem}
                         >
-                            <Typography
-                                variant="body2"
-                                color="inherit"
-                                className={classes.navLink}
-                            >
-                                <AddBoxIcon
-                                    style={{
-                                        display: 'block',
-                                        margin: '0 auto',
-                                        fontSize: '30px'
-                                    }}
-                                />
-                                dodaj artykuł
-                            </Typography>
+                            <NavLink to="/dodaj-artykul">
+                                <Typography
+                                    variant="body2"
+                                    color="inherit"
+                                    className={classes.navLink}
+                                >
+                                    <AddBoxIcon
+                                        style={{
+                                            display: 'block',
+                                            margin: '0 auto',
+                                            fontSize: '30px'
+                                        }}
+                                    />
+                                    dodaj artykuł
+                                </Typography>
+                            </NavLink>
                         </IconButton>
                         <IconButton
                             aria-label="Sign up"
@@ -316,3 +330,4 @@ export default function Navbar() {
         </div>
     );
 }
+export default withRouter(Navbar);

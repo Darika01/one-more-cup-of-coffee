@@ -3,7 +3,7 @@ import React from 'react';
 import Loader from '../../shared/loaders/Loader';
 import clsx from 'clsx';
 import moment from 'moment';
-import useArticle from 'app/components/hooks/Article/Article';
+import useArticle from 'app/actions/Article/Article';
 import { useStyles } from './styles.js';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';

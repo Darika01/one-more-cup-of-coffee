@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { colors } from 'app/utils/colors.js';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(() => ({
     mess: {
         backgroundColor: colors.errorBgr,
         width: '100%',

@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import queryString from 'query-string';
 import error from 'assets/img/error.png';
