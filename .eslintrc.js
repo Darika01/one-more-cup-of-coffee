@@ -6,7 +6,8 @@ module.exports = {
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:flowtype/recommended'
+        'plugin:flowtype/recommended',
+        'plugin:prettier/recommended'
     ],
     globals: {
         Atomics: 'readonly',
@@ -19,7 +20,7 @@ module.exports = {
         ecmaVersion: 2018,
         sourceType: 'module'
     },
-    plugins: ['react', 'react-hooks'],
+    plugins: ['react', 'react-hooks', 'prettier'],
 
     rules: {
         'react-hooks/rules-of-hooks': 'error', // Sprawdza stosowanie zasad hooków
@@ -50,7 +51,8 @@ module.exports = {
         // 'flowtype/type-id-match': [2, '^([A-Z][a-z0-9]+)+Type$'],
         'flowtype/union-intersection-spacing': [2, 'always'],
         'flowtype/use-flow-type': 1,
-        'flowtype/valid-syntax': 1
+        'flowtype/valid-syntax': 1,
+        'prettier/prettier': 'error'
     },
     settings: {
         react: {

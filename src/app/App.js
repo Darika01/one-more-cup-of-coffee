@@ -11,6 +11,7 @@ import Layout from 'app/components/Layout';
 import Home from 'app/components/pages/Home/Home';
 import SingleCategory from 'app/components/pages/SingleCategory/SingleCategory';
 import NotFound from 'app/components/pages/NotFound/NotFound';
+import Test from 'app/components/pages/Test/Test';
 
 import { useStyles } from './styles';
 import Article from 'app/components/pages/Article/Article';
@@ -25,8 +26,9 @@ function App() {
             <Router>
                 <Layout>
                     <Switch>
-                        {/* <Route exact path="/" component={MainCharts} /> */}
-                        <Route exact path="/" component={NumberWithDecimals} />
+                        <Route exact path="/" component={MainCharts} />
+                        <Route exact path="/test" component={Test} />
+                        {/* <Route exact path="/" component={NumberWithDecimals} /> */}
                         {/* <Route exact path="/" component={Home} /> */}
                         <Route
                             exact
