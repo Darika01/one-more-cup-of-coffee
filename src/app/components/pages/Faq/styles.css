@@ -1,0 +1,32 @@
+.accordion:not(:last-child) {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+.answearBtn {
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: none;
+    border: 1px solid purple;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+}
+.answear {
+    padding: 1rem 2rem 0 2rem;
+}
+.answear > p {
+    margin: 0;
+}
+.ReactCollapse--collapse {
+    transition: height 500ms;
+}
+.icon {
+    overflow: hidden;
+    transition-duration: 0.2s;
+    transition-property: transform;
+}
+.animateIcon {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}

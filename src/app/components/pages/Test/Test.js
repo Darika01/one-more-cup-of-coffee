@@ -123,8 +123,7 @@ export default function Test() {
                                 {selected.length === 1
                                     ? options.find(el => el.value == selected)
                                           .label
-                                    : //   selected
-                                      `Wybrano ${selected.length}`}
+                                    : `Wybrano ${selected.length}`}
                             </div>
                         ),
                         MenuProps: {
